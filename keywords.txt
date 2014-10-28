@@ -1,0 +1,5 @@
+
+socketClientEvent	KEYWORD1
+
+listener 	KEYWORD2
+on      	KEYWORD2
