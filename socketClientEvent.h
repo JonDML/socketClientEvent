@@ -14,7 +14,7 @@ Lanzado bajo licencia MIT
 typedef struct ElementoLista {
 
       char  dato;
-      void  (*callb)();
+      String  (*callb)();
       struct ElementoLista *siguiente;
 
 }Elemento;
@@ -35,10 +35,10 @@ class socketClientEvent {
       EthernetServer* _server;
       EthernetClient _cliente;
       void inicializar (Lista *lista);
-      void disparar(char c);
+      String disparar(char c);
 
    public:
-      int on (char dato, void(*)());
+      int on (char dato, String(*)());
       socketClientEvent(EthernetServer& server);
       void listener(); 
 };

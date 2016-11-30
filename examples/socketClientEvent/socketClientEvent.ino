@@ -5,13 +5,13 @@
 byte mac[]  = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 byte ip[]   = { 192, 168, 2, 2 };
 
-void f()  {  Serial.println("se llamo a f");   }
+String f()  {  Serial.println("se llamo a f");   return ""; }
 
-void f1() {  Serial.println("se llamo a f1");  }
+String f1() {  Serial.println("se llamo a f1");  return ""; }
 
-void f2() {  Serial.println("se llamo a f2");  }
+String f2() {  Serial.println("se llamo a f2");  return ""; }
 
-void f3() {  Serial.println("se llamo a f3");  }
+String f3() {  Serial.println("se llamo a f3");  return ""; }
 
 EthernetServer server(23);
 socketClientEvent sc = socketClientEvent(server);
@@ -28,8 +28,6 @@ void setup() {
   sc.on('3', f3);
   sc.on('c', f);
   
-  //podemos hacer algo antes de cerrar
-  sc.on('x', f1);
 }
 
 

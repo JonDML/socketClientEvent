@@ -20,7 +20,7 @@ socketClientEvent::socketClientEvent(EthernetServer& server) {
 }
 
 
-int socketClientEvent::on (char dato, void (*callb)()) {
+int socketClientEvent::on (char dato, String (*callb)()) {
 
   Elemento *nuevo_elemento;
   
@@ -44,14 +44,14 @@ void socketClientEvent::inicializar (Lista *lista) {
 }
 
 
-void socketClientEvent::disparar (char c) {
+String socketClientEvent::disparar (char c) {
 
   Elemento *actual;
   actual = lista->inicio;
 
   while (actual != NULL) {
     if(actual->dato == c )
-      actual->callb();
+      return actual->callb();
 
     actual = actual->siguiente;
   }
@@ -62,26 +62,10 @@ void socketClientEvent::listener() {
   
   _cliente = _server->available();
   
-  if (_cliente) {
+  if (_cliente)
+    while (_cliente.connected()) 
+      _cliente.print(disparar(_cliente.read()));          
 
-    while (_cliente.connected()) {
-
-      char data = _cliente.read();
-
-      disparar(data);          
-
-      switch(data)  {
-        case 'x':
-              
-            _cliente.print("adios :) ");
-            _cliente.stop();
-          break;  
-
-        default:
-          break;
-      }
-    }
-  }
 
   _cliente.stop();  
 }
