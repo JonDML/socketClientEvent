@@ -11,7 +11,7 @@
 
 socketClientEvent::socketClientEvent(EthernetServer& server) { 
 
-  if(lista == NULL) {
+  if(lista == nullptr) {
       lista = (Lista *) malloc (sizeof (Lista));
       inicializar(lista);
   }
@@ -24,7 +24,7 @@ int socketClientEvent::on (char dato, String (*callb)()) {
 
   Elemento *nuevo_elemento;
   
-  if ((nuevo_elemento = (Elemento *) malloc (sizeof (Elemento))) == NULL)
+  if ((nuevo_elemento = (Elemento *) malloc (sizeof (Elemento))) == nullptr)
     return -1;
   
   nuevo_elemento->dato = dato;
@@ -39,8 +39,8 @@ int socketClientEvent::on (char dato, String (*callb)()) {
 
 void socketClientEvent::inicializar (Lista *lista) {
       
-  lista->inicio = NULL;
-  lista->fin = NULL;
+  lista->inicio = nullptr;
+  lista->fin = nullptr;
 }
 
 
@@ -49,7 +49,7 @@ String socketClientEvent::disparar (char c) {
   Elemento *actual;
   actual = lista->inicio;
 
-  while (actual != NULL) {
+  while (actual != nullptr) {
     if(actual->dato == c )
       return actual->callb();
 
